@@ -36,3 +36,9 @@ User stories. As a user, I should be able to:
 11. Be able to add friends. (Other users)
 12. See their rooms
 13. Be able to like their rooms.
+
+
+No attribution necessary according to FAQ, but worth noting that we got some great material for our images on www.freepik.com.
+
+
+We used to youtube.com for their free music and sound effects. 
