@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Barriecito|Hanalei|Press+Start+2P|Saira+Stencil+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Baloo+Chettan|Luckiest+Guy&display=swap');
 * {
   box-sizing: border-box;
   font-family: 'Press Start 2P', cursive;
@@ -9,23 +10,48 @@ body {
 }
 
 h2 {
+  position: absolute;
+  font-size: 45px;
+  color: white;
+  text-shadow: 2px 2px 2px #f6caff;
   margin-left: 50px;
 }
 
-.backgroundpic {
-  /* background-image: url("../images/login3.jpg");
-  height: 100%;
-  width: 100%;
-  background-repeat: no-repeat;
-  background-size: contain; */
-  /* font-family: 'Lacquer', sans-serif; */
-  /* font-family: 'Hanalei', cursive; */
-  /* font-family: 'Barriecito', cursive */
+h3 {
+  color: white;
+  text-shadow: 2px 2px 2px #f6caff;
+  text-align: center;
+  font-size: 30px;
+}
+
+h5 {
+  margin-top: 100px;
+  position: absolute;
+  margin-left: 50px;
+  color: #ffb4c0;
+  font-size: 15px;
+}
+
+h1 {
+  font-size: 80px;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  font-family: 'Luckiest Guy', cursive;
+  /* margin-bottom: -450px; */
+  text-align: center;
+  margin-top: -5px;
+}
+
+#logo {
+  width: 300px;
+  margin-left: 70px;
+  margin-top: -60px;
+  margin-bottom: 20px;
 }
 
 .bg {
   position: absolute;
-  background-image: url("../images/background-login.gif");
+  background-image: url("../images/backgrounds/background-login.gif");
   height: 100vh;
   width: 100vw;
   background-size: cover;
@@ -59,7 +85,7 @@ h2 {
   text-align: center;
   padding: 55px;
   width: 90%;
-  max-width: 500px;
+  max-width: 550px;
   margin-bottom: 311px;
 }
 
@@ -107,32 +133,35 @@ h2 {
 .background-container {
   display: flex;
   justify-content: space-around;
+  padding-top: 250px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .video_thumb {
   position: relative;
-  width: 400px;
-  height: 300px;
+  width: 600px;
+  height: 500px;
   display: block;
   border: 2px solid #fff;
   margin: 2em auto;
   overflow: hidden;
   border-radius: 20px;
-  box-shadow: 7px 20px 20px 2px rgba(5, 1, 1, 0.2), 0 10px 12px 0 rgba(99, 72, 72, 0.19);
+  /* box-shadow: 7px 20px 20px 2px rgba(5, 1, 1, 0.2), 0 10px 12px 0 rgba(99, 72, 72, 0.19); */
   border: none;
 }
 
 .background-images {
   position: absolute;
   max-width: 100%;
-  height: 300px;
-  width: 400px;
+  height: 400px;
+  width: 600px;
   border-radius: 10px;
   opacity: 0.9;
 }
 
 .returnToProfile {
-  width: 100px;
+  width: 150px;
   height: 50px;
   margin: 20px;
   border-radius: 10px;
@@ -201,8 +230,8 @@ h2 {
   border-radius: 100%;
   position: relative;
   transition: background-color 0.5s ease;
-  top: 50%;
-  left: 50%;
+  top: 33%;
+  left: 52%;
   margin: -50px;
 }
 
@@ -229,24 +258,22 @@ h2 {
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
-  width: 80%;
+  width: 1100px;
   height: 100px;
   margin-top: 70px;
 }
 
 .item-cards img {
-  border-radius: 69px;
-  height: 140px;
-  width: 140px;
-  padding: 10px;
-  box-shadow: 7px 20px 20px 2px rgba(5, 1, 1, 0.2), 0 10px 12px 0 rgba(99, 72, 72, 0.19);
+  /* border-radius: 69px; */
+  height: 150px;
+  width: 150px;
+  /* box-shadow: 7px 20px 20px 2px rgba(5, 1, 1, 0.2), 0 10px 12px 0 rgba(99, 72, 72, 0.19); */
 }
 
 .decoration-cards img {
   position: absolute;
-  height: 120px;
-  width: 120px;
-  padding: 10px;
+  height: 150px;
+  width: 150px;
 }
 
 .decoration-card img {
@@ -262,8 +289,9 @@ h2 {
   display: flex;
   justify-content: space-around;
   padding: 20px;
-  width: 500px;
+  width: 900px;
   height: 150px;
+  margin-top: 150px;
 }
 
 .decorations-container {
@@ -273,7 +301,7 @@ h2 {
   align-items: flex-end;
   width: 80%;
   max-height: 120px;
-  max-width: 1000px;
+  max-width: 900px;
   margin-top: 70px;
 }
 
@@ -309,11 +337,12 @@ h2 {
 }
 
 .remove-image {
+  cursor: pointer;
   transition: transform .2s;
   display: none;
   position: absolute;
-  top: 200px;
-  right: 250px;
+  top: 2%;
+  right: 2%;
   border-radius: 10em;
   padding: 2px 6px 3px;
   text-decoration: none;
@@ -328,11 +357,11 @@ h2 {
 }
 
 .remove-item {
-  transition: transform .2s;
-  display: none;
+  /* transition: transform .2s; */
+  cursor: pointer;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1%;
+  left: 1%;
   border-radius: 10em;
   padding: 2px 6px 3px;
   text-decoration: none;
@@ -342,6 +371,24 @@ h2 {
   color: #FFF;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(0, 0, 0, 0.3);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  -webkit-transition: background 0.5s;
-  transition: background 0.5s;
+  /* -webkit-transition: background 0.5s; */
+  /* transition: background 0.5s; */
+}
+
+.room-background-container {
+  position: relative;
+}
+
+.logout-button {
+  float: right;
+  border-radius: 8px;
+  padding: 12px 25px;
+  margin: 2%;
+  background-color: #fff5c7;
+}
+
+.logoImg {
+  position: absolute;
+  bottom: 1%;
+  left: 1%;
 }

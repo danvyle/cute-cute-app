@@ -5,11 +5,26 @@ const ITEMS_URL = 'http://localhost:3000/items'
 const ROOMS_URL = 'http://localhost:3000/rooms'
 const DECORATIONS_URL = 'http://localhost:3000/decorations'
 // const audio = ' <embed src="/Users/hao/Github/cute-cute-app/audio/Toy_Piano.mp3" width="180" height="90" loop="false" autostart="false" hidden="true" />'
+const loginPageHtml = `<div class="bg">
+  <div class="login-container">
+    <form id="login">
+      <h1>cute & cute</h1>
+      <img src="../images/zoo-items/dinosauranimal.png" id='logo'>
+        <input type="text" class="input" id="username" autofocus autocomplete="off" placeholder="enter name"></input>
+        <input type="submit" class="button-primary" value="start"></input>
+      </form>
+    </div>
+  </div>
+  <script src="./index.js"></script>`
+
+
 
 function addMusic() {
   const musicElement = document.createElement("embed");
-  musicElement.src = "/Users/hao/Github/cute-cute-app/audio/Toy_Piano.mp3";
+  musicElement.src = "../audio/Toy_Piano.mp3";
+  // "/Users/hao/Github/cute-cute-app/audio/Toy_Piano.mp3"
   document.querySelector('body').append(musicElement);
+  musicElement.style = 'visibility: hidden';
 }
 
 function fetchUsersData() {
@@ -55,7 +70,7 @@ function displayUserPage(data) {
     backgroundPic.innerHTML = "";
   } else {
     const backgroundPic = document.querySelector('.profilebackground');
-    backgroundPic.innerHTML = "";
+    backgroundPic.innerHTML = '';
   }
   createUserElements(data);
 }
@@ -66,11 +81,36 @@ function createUserElements(data) {
   profileDiv.className = "profile-page"
   profileBackground.appendChild(profileDiv)
   const h2 = document.createElement('h2');
-  h2.innerText = `Welcome ${data.username}!`
+  h2.innerText = `Hi ${data.username}!`
   h2.className = 'user-header'
-  profileDiv.appendChild(h2)
+  const h5 = document.createElement('h5');
+  h5.innerText = "Which room are you decorating today?";
+  const logoutButton = document.createElement('button');
+  logoutButton.innerText = 'Logout';
+  logoutButton.className = 'logout-button';
+  profileDiv.appendChild(logoutButton);
+  profileDiv.appendChild(h2);
+  profileDiv.appendChild(h5);
+  logoutButton.addEventListener('click', function(e) {
+    location.reload();
+    // e.preventDefault();
+    // const body = document.querySelector('.profilebackground');
+    // body.className = 'backgroundpic';
+    // body.innerHTML = loginPageHtml;
+    // const form = document.querySelector('#login');
+    // form.addEventListener('submit', function(e) {
+    //   e.preventDefault();
+    //   console.log('works');
+    //   fetchUsersData();
+    })
+    // e.preventDefault();
+  // })
   fetchBackgrounds(data);
   addMusic();
+  const logoImg = document.createElement('img');
+  logoImg.className = 'logoImg';
+  logoImg.src = '../images/backgrounds/dinosauranimallogo.png';
+  profileDiv.appendChild(logoImg);
 }
 
 function fetchBackgrounds(data) {
@@ -92,6 +132,9 @@ function renderBackgrounds(info, data) {
     image.src = element.background_url;
     image.className = "background-images";
     image.id = `${element.name}`;
+    let roomName = document.createElement('h3');
+    roomName.innerText = element.name.replace("_", " ");
+    videoThumb.appendChild(roomName);
     videoThumb.appendChild(image);
     const userId = data.id;
     const backgroundId = element.id;
@@ -162,17 +205,24 @@ function roomChoice(button, image, userId, backgroundId, roomJson) {
       profilePage.innerHTML = '';
       profilePage.className = 'room-choice';
       createReturnButton(profilePage, userId);
+      const div = document.createElement('div');
+      div.className = 'room-background-container'
       image.className = "create-room-background";
-      profilePage.appendChild(image);
+      div.appendChild(image);
+      profilePage.appendChild(div);
       let aTag = document.createElement('a');
       aTag.innerText = 'x';
       aTag.className = 'remove-image';
       aTag.style = 'display: inline;'
-      profilePage.appendChild(aTag);
+      div.appendChild(aTag);
       roomDeleteButton(aTag, image, userId);
       const itemContainer = document.createElement('div');
       itemContainer.className = 'item-container';
       profilePage.appendChild(itemContainer);
+      const logoImg = document.createElement('img');
+      logoImg.className = 'logoImg';
+      logoImg.src = '../images/backgrounds/dinosauranimallogo.png';
+      profilePage.appendChild(logoImg);
       fetchItems(image, userId);
     } else {
       let roomId = roomJson.filter(room => room.user_id === userId).filter(room => room.background_id === backgroundId)[0].id;
@@ -180,18 +230,25 @@ function roomChoice(button, image, userId, backgroundId, roomJson) {
       profilePage.innerHTML = '';
       profilePage.className = 'room-choice';
       createReturnButton(profilePage, userId);
+      const div = document.createElement('div');
+      div.className = 'room-background-container'
       image.className = "create-room-background";
       image.setAttribute('name', roomId);
-      profilePage.appendChild(image);
+      div.appendChild(image);
+      profilePage.appendChild(div);
       let aTag = document.createElement('a');
       aTag.innerText = 'x';
       aTag.className = 'remove-image';
       aTag.style = 'display: inline;'
-      profilePage.appendChild(aTag);
+      div.appendChild(aTag);
       roomDeleteButton(aTag, image, userId);
       const itemContainer = document.createElement('div');
       itemContainer.className = 'item-container';
       profilePage.appendChild(itemContainer);
+      const logoImg = document.createElement('img');
+      logoImg.className = 'logoImg';
+      logoImg.src = '../images/backgrounds/dinosauranimallogo.png';
+      profilePage.appendChild(logoImg);
       fetchItems(image, userId);
     }
   })
@@ -281,7 +338,13 @@ function renderUserData(userData, items, image) {
       let aTag = document.createElement('a');
       aTag.innerText = 'x';
       aTag.className = 'remove-item';
-      aTag.style = 'display: inline;'
+      aTag.style = 'visibility: hidden;'
+      imgCard.addEventListener('mouseover', function(e) {
+        aTag.style = 'visibility: visible;';
+      })
+      imgCard.addEventListener('mouseleave', function (e) {
+        aTag.style = 'visibility: hidden;';
+      })
       imgCard.appendChild(aTag);
       deleteItemAss(aTag, image, itemId, imgCard, element);
       // clickItems(itemImg, element, image);
@@ -365,10 +428,11 @@ function createDecoration(element, image, itemImg, itemId, imgCard) {
 function createDecorationElement(image, itemImg, itemId, imgCard, element) {
 
   const decorationsContainer = document.querySelector('.decorations-container');
+  const imageContainer = document.querySelector('.image-container');
   const decorationImg = document.createElement('img');
   const decorationCard = document.createElement('div');
   decorationCard.className = "decoration-card";
-  decorationsContainer.appendChild(decorationCard);
+  imageContainer.appendChild(decorationCard);
   decorationImg.src = itemImg.src;
   decorationImg.className = 'decorationImages';
   decorationImg.id = image.name;
@@ -376,10 +440,15 @@ function createDecorationElement(image, itemImg, itemId, imgCard, element) {
   let aTag = document.createElement('a');
   aTag.innerText = 'x';
   aTag.className = 'remove-item';
-  aTag.style = 'display: inline;'
+  aTag.style = 'visibility: hidden;'
   decorationCard.appendChild(aTag);
+  decorationCard.addEventListener('mouseover', function (e) {
+    aTag.style = 'visibility: visible;';
+  })
+  decorationCard.addEventListener('mouseleave', function (e) {
+    aTag.style = 'visibility: hidden;';
+  })
   // imgCard = decoratonCard;
-  console.log('imgcard', imgCard);
   deleteItemAss(aTag, image, itemId, decorationCard, element);
 }
 
